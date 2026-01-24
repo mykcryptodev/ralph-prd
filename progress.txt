@@ -1,0 +1,18 @@
+# Progress Log
+
+## Learnings
+(Patterns discovered during implementation)
+
+---
+
+## Iteration 1 - US-001: Create skill directory structure
+- What was implemented:
+  - Created `.claude/skills/ralph/` directory structure
+  - Added placeholder `prd.md` skill file with frontmatter
+- Files changed:
+  - `.claude/skills/ralph/prd.md` (new)
+- Learnings for future iterations:
+  - This is a pure markdown skill repo - no TypeScript/Node.js
+  - Skill files use YAML frontmatter for metadata (name, description)
+  - The prd.md file needs full implementation in US-002
+---
