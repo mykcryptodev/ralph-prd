@@ -16,3 +16,18 @@
   - Skill files use YAML frontmatter for metadata (name, description)
   - The prd.md file needs full implementation in US-002
 ---
+
+## Iteration 2 - US-002: Create the /prd skill definition file
+- What was implemented:
+  - Full PRD generation skill with comprehensive instructions
+  - 4-step process: gather context, generate PRD, guidelines, after-creation steps
+  - Example PRD output for user authentication feature
+  - Proper frontmatter with name and description triggers
+- Files changed:
+  - `.claude/skills/ralph/prd.md` (updated with full implementation)
+- Learnings for future iterations:
+  - Skill files are markdown with YAML frontmatter
+  - The description field in frontmatter should include trigger phrases
+  - No tests to run - this is a pure markdown skill repo
+  - Claude Code loads skills from `.claude/skills/[skill-name]/` directories
+---

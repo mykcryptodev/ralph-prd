@@ -68,11 +68,106 @@ Create a file named `PRD.md` in the project root with the following structure:
 4. **Include a "Typecheck passes" criterion** when the project has TypeScript/type checking
 5. **Keep the PRD focused** - One feature per PRD, split large projects into phases
 
-### Step 4: After PRD Creation
+### Step 4: Setup ralph.sh
+
+Before telling the user the PRD is ready, ensure `ralph.sh` exists in the project root:
+
+1. **Check if ralph.sh exists** in the project root directory
+2. **If ralph.sh does NOT exist:**
+   - Create `ralph.sh` in the project root with this content:
+   ```bash
+   #!/bin/bash
+   # Ralph - Autonomous implementation loop
+   # Runs Claude Code iteratively until PRD is complete
+
+   MAX_ITERATIONS=${1:-50}
+   ITERATION=0
+
+   echo "Starting Ralph autonomous loop (max $MAX_ITERATIONS iterations)..."
+
+   while [ $ITERATION -lt $MAX_ITERATIONS ]; do
+       ITERATION=$((ITERATION + 1))
+       echo ""
+       echo "=== Iteration $ITERATION ==="
+
+       # Run Claude Code with the Ralph agent prompt
+       OUTPUT=$(claude -p "You are Ralph, an autonomous coding agent. Do exactly ONE task per iteration.
+
+   ## Steps
+
+   1. Read PRD.md and find the first task that is NOT complete (marked [ ]).
+   2. Read progress.txt - check the Learnings section first for patterns from previous iterations.
+   3. Implement that ONE task only.
+   4. Run tests/typecheck to verify it works.
+
+   ## Critical: Only Complete If Tests Pass
+
+   - If tests PASS:
+     - Update PRD.md to mark the task complete (change [ ] to [x])
+     - Commit your changes with message: feat: [task description]
+     - Append what worked to progress.txt
+
+   - If tests FAIL:
+     - Do NOT mark the task complete
+     - Do NOT commit broken code
+     - Append what went wrong to progress.txt (so next iteration can learn)
+
+   ## Progress Notes Format
+
+   Append to progress.txt using this format:
+
+   ## Iteration [N] - [Task Name]
+   - What was implemented
+   - Files changed
+   - Learnings for future iterations:
+     - Patterns discovered
+     - Gotchas encountered
+     - Useful context
+   ---
+
+   ## Update AGENTS.md (If Applicable)
+
+   If you discover a reusable pattern that future work should know about:
+   - Check if AGENTS.md exists in the project root
+   - Add patterns like: 'This codebase uses X for Y' or 'Always do Z when changing W'
+   - Only add genuinely reusable knowledge, not task-specific details
+
+   ## End Condition
+
+   After completing your task, check PRD.md:
+   - If ALL tasks are [x], output exactly: <promise>COMPLETE</promise>
+   - If tasks remain [ ], just end your response (next iteration will continue)
+   " 2>&1)
+
+       echo "$OUTPUT"
+
+       # Check if Ralph signaled completion
+       if echo "$OUTPUT" | grep -q "<promise>COMPLETE</promise>"; then
+           echo ""
+           echo "=== PRD Complete! ==="
+           echo "All tasks finished in $ITERATION iterations."
+           exit 0
+       fi
+   done
+
+   echo ""
+   echo "=== Max iterations reached ==="
+   echo "Stopped after $MAX_ITERATIONS iterations. Check PRD.md for remaining tasks."
+   exit 1
+   ```
+   - Make the file executable with `chmod +x ralph.sh`
+   - Tell the user: "Created ralph.sh - run ./ralph.sh to start autonomous implementation"
+
+3. **If ralph.sh ALREADY exists:**
+   - Ask the user: "ralph.sh already exists. Would you like to overwrite it with the latest version? (y/n)"
+   - Only overwrite if the user confirms with 'y' or 'yes'
+   - If user declines, keep the existing file and proceed
+
+### Step 5: After PRD Creation
 
 Tell the user:
 1. Review the PRD and adjust as needed
-2. Run `./ralph.sh` to start the autonomous implementation loop (if ralph.sh exists)
+2. Run `./ralph.sh` to start the autonomous implementation loop
 3. Each iteration will complete one user story until the PRD is done
 
 ## Example Output

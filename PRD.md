@@ -36,11 +36,11 @@ Create a shareable Claude Code skill that provides the `/prd` command for genera
 **Description:** As a skill user, I want `ralph.sh` created automatically in my project root when I first use the skill.
 
 **Acceptance Criteria:**
-- [ ] Skill checks if `ralph.sh` exists in project root on invocation
-- [ ] If missing, creates `ralph.sh` with correct content and executable permissions
-- [ ] If exists, prompts user: "ralph.sh already exists. Overwrite? (y/n)"
-- [ ] Only overwrites if user confirms
-- [ ] Typecheck passes (if applicable)
+- [x] Skill checks if `ralph.sh` exists in project root on invocation
+- [x] If missing, creates `ralph.sh` with correct content and executable permissions
+- [x] If exists, prompts user: "ralph.sh already exists. Overwrite? (y/n)"
+- [x] Only overwrites if user confirms
+- [x] Typecheck passes (if applicable)
 
 ### US-004: Include progress.txt template in skill
 **Description:** As a skill user, I want `progress.txt` created with proper structure when generating a PRD.
