@@ -55,13 +55,13 @@ Create a shareable Claude Code skill that provides the `/prd` command for genera
 **Description:** As a potential user, I want clear instructions so I can install and use this skill in my project.
 
 **Acceptance Criteria:**
-- [ ] Create `README.md` in repository root with installation steps
-- [ ] Include: Prerequisites (Claude Code installed)
-- [ ] Include: Installation command/steps (copy to `.claude/skills/`)
-- [ ] Include: Usage examples (`/prd` command)
-- [ ] Include: What gets created (`ralph.sh`, `PRD.md`, `progress.txt`)
-- [ ] Instructions are clear for developers unfamiliar with Claude skills
-- [ ] Typecheck passes (if applicable)
+- [x] Create `README.md` in repository root with installation steps
+- [x] Include: Prerequisites (Claude Code installed)
+- [x] Include: Installation command/steps (copy to `.claude/skills/`)
+- [x] Include: Usage examples (`/prd` command)
+- [x] Include: What gets created (`ralph.sh`, `PRD.md`, `progress.txt`)
+- [x] Instructions are clear for developers unfamiliar with Claude skills
+- [x] Typecheck passes (if applicable)
 
 ### US-006: Add AGENTS.md with skill patterns
 **Description:** As a skill maintainer, I want documented patterns so future contributors understand the codebase.
