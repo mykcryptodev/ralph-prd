@@ -67,11 +67,11 @@ Create a shareable Claude Code skill that provides the `/prd` command for genera
 **Description:** As a skill maintainer, I want documented patterns so future contributors understand the codebase.
 
 **Acceptance Criteria:**
-- [ ] Create `AGENTS.md` in repository root
-- [ ] Document skill file structure conventions
-- [ ] Document ralph.sh script purpose and parameters
-- [ ] Include notes on how skills are loaded by Claude Code
-- [ ] Typecheck passes (if applicable)
+- [x] Create `AGENTS.md` in repository root
+- [x] Document skill file structure conventions
+- [x] Document ralph.sh script purpose and parameters
+- [x] Include notes on how skills are loaded by Claude Code
+- [x] Typecheck passes (if applicable)
 
 ## Non-Goals
 

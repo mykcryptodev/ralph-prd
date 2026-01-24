@@ -62,3 +62,36 @@
   - Important to NOT overwrite existing progress.txt to preserve learnings
   - Step numbering needs to be updated when inserting new steps
 ---
+
+## Iteration 5 - US-005: Create installation README
+- What was implemented:
+  - Comprehensive README.md with installation steps, usage examples, and troubleshooting
+  - Includes: Prerequisites, Installation, Usage, What Gets Created, How Ralph Works
+  - PRD format documentation and tips for best results
+  - Troubleshooting section for common issues
+- Files changed:
+  - `README.md` (new - 150+ lines of documentation)
+  - `PRD.md` (marked US-005 acceptance criteria complete)
+- Learnings for future iterations:
+  - This is a pure markdown repo - no tests/typecheck to run
+  - README should cover both global (~/.claude/skills/) and project-level (.claude/skills/) installation
+  - Include troubleshooting for common issues (permissions, skill not found)
+---
+
+## Iteration 6 - US-006: Add AGENTS.md with skill patterns
+- What was implemented:
+  - Created comprehensive AGENTS.md documenting skill patterns
+  - Documented project structure and file organization
+  - Explained skill file structure conventions (location, frontmatter, body)
+  - Documented ralph.sh script purpose, key parameters, and location
+  - Explained how Claude Code loads skills from directories
+  - Added common patterns section (file creation, progress tracking, committing)
+  - Added contributing guidelines
+- Files changed:
+  - `AGENTS.md` (new - comprehensive patterns documentation)
+  - `PRD.md` (marked US-006 acceptance criteria complete)
+- Learnings for future iterations:
+  - AGENTS.md should capture reusable patterns, not task-specific details
+  - This completes the PRD - all user stories are now implemented
+  - Pure markdown repo requires no tests/typecheck
+---
