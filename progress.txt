@@ -31,3 +31,34 @@
   - No tests to run - this is a pure markdown skill repo
   - Claude Code loads skills from `.claude/skills/[skill-name]/` directories
 ---
+
+## Iteration 3 - US-003: Add ralph.sh setup logic to skill
+- What was implemented:
+  - Added Step 4 to prd.md skill for ralph.sh setup
+  - Skill now checks if ralph.sh exists in project root on invocation
+  - If missing, creates ralph.sh with full autonomous loop script and chmod +x
+  - If exists, prompts user "Would you like to overwrite?" before replacing
+  - Renumbered "After PRD Creation" to Step 5
+- Files changed:
+  - `.claude/skills/ralph/prd.md` (added ralph.sh setup logic)
+  - `PRD.md` (marked US-003 acceptance criteria complete)
+- Learnings for future iterations:
+  - Skills can instruct Claude to create files with specific content
+  - The embedded ralph.sh script contains the full Ralph agent prompt
+  - Important to provide clear user prompts for file overwrite scenarios
+---
+
+## Iteration 4 - US-004: Include progress.txt template in skill
+- What was implemented:
+  - Added Step 3 to prd.md skill for progress.txt creation
+  - Template includes "# Progress Log", "## Learnings" section header, and separator
+  - Skill preserves existing progress.txt if it already exists (don't overwrite)
+  - Renumbered Steps 3-5 to Steps 4-6
+- Files changed:
+  - `.claude/skills/ralph/prd.md` (added progress.txt template creation)
+  - `PRD.md` (marked US-004 acceptance criteria complete)
+- Learnings for future iterations:
+  - The progress.txt Learnings section is read first by Ralph each iteration
+  - Important to NOT overwrite existing progress.txt to preserve learnings
+  - Step numbering needs to be updated when inserting new steps
+---

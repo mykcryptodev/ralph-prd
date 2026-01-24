@@ -46,10 +46,10 @@ Create a shareable Claude Code skill that provides the `/prd` command for genera
 **Description:** As a skill user, I want `progress.txt` created with proper structure when generating a PRD.
 
 **Acceptance Criteria:**
-- [ ] Skill creates `progress.txt` with Learnings section header
-- [ ] Template matches format expected by ralph.sh loop
-- [ ] Created alongside `PRD.md` during PRD generation
-- [ ] Typecheck passes (if applicable)
+- [x] Skill creates `progress.txt` with Learnings section header
+- [x] Template matches format expected by ralph.sh loop
+- [x] Created alongside `PRD.md` during PRD generation
+- [x] Typecheck passes (if applicable)
 
 ### US-005: Create installation README
 **Description:** As a potential user, I want clear instructions so I can install and use this skill in my project.

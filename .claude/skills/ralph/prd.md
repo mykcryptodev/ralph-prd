@@ -60,7 +60,27 @@ Create a file named `PRD.md` in the project root with the following structure:
 - [Security considerations if relevant]
 ```
 
-### Step 3: Guidelines for Good PRDs
+### Step 3: Create progress.txt Template
+
+After creating the PRD.md, create a `progress.txt` file in the project root with the following template:
+
+```markdown
+# Progress Log
+
+## Learnings
+(Patterns discovered during implementation)
+
+---
+
+```
+
+This file serves two purposes:
+1. **Learnings section** - Ralph reads this first to check for patterns from previous iterations
+2. **Iteration logs** - Each Ralph iteration appends its progress notes here
+
+If `progress.txt` already exists, do NOT overwrite it - the existing learnings are valuable.
+
+### Step 4: Guidelines for Good PRDs
 
 1. **User Stories should be small and atomic** - Each story should be completable in one iteration
 2. **Acceptance criteria must be testable** - Use checkboxes that can be verified
@@ -68,7 +88,7 @@ Create a file named `PRD.md` in the project root with the following structure:
 4. **Include a "Typecheck passes" criterion** when the project has TypeScript/type checking
 5. **Keep the PRD focused** - One feature per PRD, split large projects into phases
 
-### Step 4: Setup ralph.sh
+### Step 5: Setup ralph.sh
 
 Before telling the user the PRD is ready, ensure `ralph.sh` exists in the project root:
 
@@ -163,7 +183,7 @@ Before telling the user the PRD is ready, ensure `ralph.sh` exists in the projec
    - Only overwrite if the user confirms with 'y' or 'yes'
    - If user declines, keep the existing file and proceed
 
-### Step 5: After PRD Creation
+### Step 6: After PRD Creation
 
 Tell the user:
 1. Review the PRD and adjust as needed
