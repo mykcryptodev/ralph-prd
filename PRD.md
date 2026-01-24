@@ -27,10 +27,10 @@ Create a shareable Claude Code skill that provides the `/prd` command for genera
 **Description:** As a skill user, I want the `/prd` command to generate PRDs using the methodology defined in this project.
 
 **Acceptance Criteria:**
-- [ ] Create `prd.md` skill file with proper frontmatter (name, description, triggers)
-- [ ] Include full PRD generation instructions from existing skill
-- [ ] Skill is invocable via `/prd` command
-- [ ] Typecheck passes (if applicable)
+- [x] Create `prd.md` skill file with proper frontmatter (name, description, triggers)
+- [x] Include full PRD generation instructions from existing skill
+- [x] Skill is invocable via `/prd` command
+- [x] Typecheck passes (if applicable)
 
 ### US-003: Add ralph.sh setup logic to skill
 **Description:** As a skill user, I want `ralph.sh` created automatically in my project root when I first use the skill.
