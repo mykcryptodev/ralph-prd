@@ -45,11 +45,11 @@ Convert the existing Ralph PRD skill into a distributable Claude Code plugin so 
 **Description:** As a user, I want clear installation instructions so I can install the plugin with one command.
 
 **Acceptance Criteria:**
-- [ ] Update README.md with plugin installation command: `/plugin install github:username/ralph-prd`
-- [ ] Document the namespaced command: `/ralph-prd:prd`
-- [ ] Include instructions for copying `ralph.sh` to project
-- [ ] Remove old manual copy installation instructions
-- [ ] Keep usage examples updated for new command format
+- [x] Update README.md with plugin installation command: `/plugin install github:username/ralph-prd`
+- [x] Document the namespaced command: `/ralph-prd:prd`
+- [x] Include instructions for copying `ralph.sh` to project
+- [x] Remove old manual copy installation instructions
+- [x] Keep usage examples updated for new command format
 
 ### US-005: Add plugin-specific documentation
 **Description:** As a user, I want to understand what the plugin provides before installing it.

@@ -1,6 +1,6 @@
-# Ralph Skill for Claude Code
+# Ralph PRD Plugin for Claude Code
 
-A Claude Code skill that provides the `/prd` command for generating Product Requirements Documents and setting up the Ralph autonomous implementation loop.
+A Claude Code plugin that provides the `/ralph-prd:prd` command for generating Product Requirements Documents and setting up the Ralph autonomous implementation loop.
 
 ## What is Ralph?
 
@@ -18,35 +18,33 @@ Ralph is an autonomous coding workflow that:
 
 ## Installation
 
-Copy the skill to your Claude Code skills directory:
+Install the plugin with a single command in Claude Code:
 
-```bash
-# Clone this repository
-git clone https://github.com/your-username/ralph-skill.git
-
-# Copy the skill to your Claude Code skills directory
-cp -r ralph-skill/.claude/skills/ralph ~/.claude/skills/
+```
+/plugin install github:mikesolomon/ralph-prd
 ```
 
-Or manually:
+After installation, copy the `ralph.sh` script to your project directory:
 
-1. Create the directory `~/.claude/skills/ralph/`
-2. Copy `.claude/skills/ralph/prd.md` from this repo to that directory
+```bash
+cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./
+chmod +x ralph.sh
+```
 
 ## Usage
 
 ### Creating a PRD
 
-In any project directory, use the `/prd` command:
+In any project directory, use the `/ralph-prd:prd` command:
 
 ```
-/prd add user authentication
+/ralph-prd:prd add user authentication
 ```
 
 Or simply describe what you want to build:
 
 ```
-/prd create a REST API for managing tasks
+/ralph-prd:prd create a REST API for managing tasks
 ```
 
 The skill will:
@@ -73,7 +71,7 @@ You can optionally specify a maximum number of iterations:
 
 ## What Gets Created
 
-When you use the `/prd` command, these files are created in your project:
+When you use the `/ralph-prd:prd` command, these files are created in your project:
 
 | File | Description |
 |------|-------------|
@@ -151,10 +149,11 @@ Check `progress.txt` - it contains learnings from failed attempts. You may need 
 - Break the task into smaller steps
 - Add technical context to the PRD
 
-### Claude Code not finding the skill
-Ensure the skill is in the correct location:
-- Global skills: `~/.claude/skills/ralph/prd.md`
-- Project skills: `.claude/skills/ralph/prd.md`
+### Claude Code not finding the command
+If `/ralph-prd:prd` is not available:
+- Verify the plugin is installed: check `~/.claude/plugins/ralph-prd/` exists
+- Restart Claude Code after installation
+- Reinstall if needed: `/plugin uninstall ralph-prd` then `/plugin install github:mikesolomon/ralph-prd`
 
 ## License
 
