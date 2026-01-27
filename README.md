@@ -11,6 +11,30 @@ Ralph is an autonomous coding workflow that:
 4. Commits working code automatically
 5. Repeats until all tasks are complete
 
+## What's Included
+
+This plugin provides everything needed to use the Ralph autonomous workflow:
+
+| Component | Location | Description |
+|-----------|----------|-------------|
+| Plugin manifest | `.claude-plugin/plugin.json` | Plugin metadata and configuration |
+| PRD skill | `skills/prd/SKILL.md` | The `/ralph-prd:prd` command for generating PRDs |
+| Ralph script | `scripts/ralph.sh` | The autonomous implementation loop script |
+
+### Plugin Structure
+
+```
+ralph-prd/
+├── .claude-plugin/
+│   └── plugin.json       # Plugin manifest (name, version, description)
+├── skills/
+│   └── prd/
+│       └── SKILL.md      # The /ralph-prd:prd skill definition
+├── scripts/
+│   └── ralph.sh          # Bundled autonomous loop script
+└── README.md             # This documentation
+```
+
 ## Prerequisites
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed and configured
@@ -30,6 +54,16 @@ After installation, copy the `ralph.sh` script to your project directory:
 cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./
 chmod +x ralph.sh
 ```
+
+## Uninstallation
+
+To remove the plugin from Claude Code:
+
+```
+/plugin uninstall ralph-prd
+```
+
+This removes the plugin from `~/.claude/plugins/`. Any `ralph.sh`, `PRD.md`, or `progress.txt` files in your projects are not affected.
 
 ## Usage
 

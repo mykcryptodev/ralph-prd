@@ -55,10 +55,10 @@ Convert the existing Ralph PRD skill into a distributable Claude Code plugin so 
 **Description:** As a user, I want to understand what the plugin provides before installing it.
 
 **Acceptance Criteria:**
-- [ ] Add "What's Included" section to README listing plugin contents
-- [ ] Document plugin structure (`.claude-plugin/`, `skills/`, `scripts/`)
-- [ ] Add uninstall instructions: `/plugin uninstall ralph-prd`
-- [ ] Include troubleshooting section for plugin-specific issues
+- [x] Add "What's Included" section to README listing plugin contents
+- [x] Document plugin structure (`.claude-plugin/`, `skills/`, `scripts/`)
+- [x] Add uninstall instructions: `/plugin uninstall ralph-prd`
+- [x] Include troubleshooting section for plugin-specific issues
 
 ### US-006: Clean up legacy skill locations
 **Description:** As a developer, I want to remove the old `.claude/skills/` directory to avoid confusion since the plugin structure is now at the root.

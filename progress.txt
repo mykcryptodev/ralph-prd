@@ -40,3 +40,27 @@
   - Bash syntax check: `bash -n script.sh`
   - No typecheck needed for markdown/shell projects - just verify syntax
 ---
+
+## Iteration 4 - US-004: Update README for plugin installation
+- What was implemented: Updated README.md with plugin installation instructions and namespaced command
+- Files changed:
+  - `README.md` (updated - plugin installation, namespaced commands, removed old manual instructions)
+  - `PRD.md` (updated - marked US-004 complete)
+- Learnings for future iterations:
+  - Plugin commands are namespaced as `/plugin-name:command` (e.g., `/ralph-prd:prd`)
+  - Plugin installation: `/plugin install github:username/repo-name`
+  - Plugin uninstall: `/plugin uninstall plugin-name`
+  - Plugins are installed to `~/.claude/plugins/plugin-name/`
+---
+
+## Iteration 5 - US-005: Add plugin-specific documentation
+- What was implemented: Added "What's Included" section and plugin structure documentation to README
+- Files changed:
+  - `README.md` (updated - added What's Included table, Plugin Structure tree, Uninstallation section)
+  - `PRD.md` (updated - marked US-005 complete)
+- Learnings for future iterations:
+  - Documentation should cover: what's in the plugin, structure, how to install, and how to uninstall
+  - Use tree-style diagrams to show directory structure
+  - Uninstall section should note which files are NOT affected (user-created files in projects)
+  - Troubleshooting already covered plugin issues (command not found, reinstall steps)
+---
