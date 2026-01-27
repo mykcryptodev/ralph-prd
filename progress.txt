@@ -79,3 +79,19 @@
   - AGENTS.md should always reflect current directory structure
   - Test with `claude --plugin-dir .` before publishing
 ---
+
+## Iteration 7 - US-007: Test plugin with --plugin-dir flag
+- What was implemented: Verified plugin works correctly with `claude --plugin-dir .`
+- Files changed:
+  - `PRD.md` (updated - marked US-007 complete)
+- Test results:
+  - Plugin loads successfully with `--plugin-dir .` flag
+  - `/ralph-prd:prd` command is recognized and available
+  - Skill description and capabilities displayed correctly
+  - `scripts/ralph.sh` is accessible (present, executable, 2313 bytes)
+- Learnings for future iterations:
+  - Test plugin loading with: `echo "prompt" | claude --print --plugin-dir .`
+  - This avoids interactive mode and allows automated verification
+  - The plugin is ready for publishing to GitHub
+  - Users install with: `/plugin install github:mikesolomon/ralph-prd`
+---

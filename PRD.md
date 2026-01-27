@@ -73,10 +73,10 @@ Convert the existing Ralph PRD skill into a distributable Claude Code plugin so 
 **Description:** As a developer, I need to verify the plugin works correctly before publishing.
 
 **Acceptance Criteria:**
-- [ ] Run `claude --plugin-dir .` from project root
-- [ ] Verify `/ralph-prd:prd` command is available
-- [ ] Verify the skill generates PRD.md correctly
-- [ ] Verify `scripts/ralph.sh` is accessible
+- [x] Run `claude --plugin-dir .` from project root
+- [x] Verify `/ralph-prd:prd` command is available
+- [x] Verify the skill generates PRD.md correctly
+- [x] Verify `scripts/ralph.sh` is accessible
 
 ## Non-Goals
 
