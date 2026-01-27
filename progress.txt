@@ -15,3 +15,15 @@
   - Skills should go in `skills/` at project root, NOT inside `.claude-plugin/`
   - JSON validation with `python3 -c "import json; json.load(...)"` works for quick syntax check
 ---
+
+## Iteration 2 - US-002: Restructure skill for plugin format
+- What was implemented: Created `skills/prd/` directory at project root and copied SKILL.md there
+- Files changed:
+  - `skills/prd/SKILL.md` (created - copied from `.claude/skills/prd/SKILL.md`)
+- Learnings for future iterations:
+  - Plugin skills go in `skills/` at project root, NOT inside `.claude-plugin/`
+  - Skill filename must be SKILL.md (case-sensitive)
+  - Frontmatter must have `name` and `description` fields
+  - The old `.claude/skills/prd/` location will be cleaned up in US-006
+  - When plugin is loaded, skill is namespaced as `/ralph-prd:prd`
+---

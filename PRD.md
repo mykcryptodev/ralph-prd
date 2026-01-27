@@ -27,10 +27,10 @@ Convert the existing Ralph PRD skill into a distributable Claude Code plugin so 
 **Description:** As a plugin developer, I need to move the PRD skill to the plugin's `skills/` directory so it's properly namespaced as `/ralph-prd:prd`.
 
 **Acceptance Criteria:**
-- [ ] Create `skills/prd/` directory at project root (not inside `.claude-plugin/`)
-- [ ] Move/copy existing SKILL.md to `skills/prd/SKILL.md`
-- [ ] Verify frontmatter has `name: prd` and proper description
-- [ ] Skill should be invocable as `/ralph-prd:prd` when plugin is loaded
+- [x] Create `skills/prd/` directory at project root (not inside `.claude-plugin/`)
+- [x] Move/copy existing SKILL.md to `skills/prd/SKILL.md`
+- [x] Verify frontmatter has `name: prd` and proper description
+- [x] Skill should be invocable as `/ralph-prd:prd` when plugin is loaded
 
 ### US-003: Bundle ralph.sh as plugin asset
 **Description:** As a user, I want the ralph.sh script included with the plugin so I don't need to create it manually.
