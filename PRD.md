@@ -1,90 +1,94 @@
-# PRD: Distributable Ralph Skill for Claude Code
+# PRD: Ralph-PRD Plugin Distribution
 
 ## Introduction
 
-Create a shareable Claude Code skill that provides the `/prd` command for generating Product Requirements Documents. When users install this skill from GitHub, it automatically sets up `ralph.sh` (the autonomous implementation loop) and provides `progress.txt` template creation. This enables any developer to use the Ralph workflow in their own projects.
+Convert the existing Ralph PRD skill into a distributable Claude Code plugin so users can install it via `/plugin install github:username/ralph-prd` instead of manually copying files. The plugin will be named `ralph-prd` and include the `/prd` skill, bundled `ralph.sh` script, documentation, and everything needed for a complete installation experience.
 
 ## Goals
 
-- Provide a GitHub-installable skill that adds `/prd` command to Claude Code
-- Automatically create `ralph.sh` in user's project root on first skill invocation
-- Handle existing `ralph.sh` gracefully by prompting before overwrite
-- Create `progress.txt` template alongside PRD generation
-- Include clear installation instructions for developers of any skill level
+- Package the existing PRD skill as a proper Claude Code plugin
+- Enable one-command installation via GitHub
+- Bundle the `ralph.sh` script as a plugin asset
+- Provide clear documentation for plugin users
+- Follow Claude Code plugin best practices and conventions
 
 ## User Stories
 
-### US-001: Create skill directory structure
-**Description:** As a skill author, I need the proper directory structure so the skill can be installed by copying to `.claude/skills/`.
+### US-001: Create plugin manifest structure
+**Description:** As a plugin developer, I need the proper `.claude-plugin/plugin.json` manifest so Claude Code recognizes this as a valid plugin.
 
 **Acceptance Criteria:**
-- [x] Create `.claude/skills/ralph/` directory in project root (the distributable skill)
-- [x] Skill directory contains `prd.md` (the main skill definition)
-- [x] Directory structure follows Claude Code skill conventions
-- [x] Typecheck passes (if applicable)
+- [x] Create `.claude-plugin/` directory at project root
+- [x] Create `plugin.json` with name `ralph-prd`, description, version `1.0.0`, and author
+- [x] Include `homepage` and `repository` fields pointing to GitHub
+- [x] Typecheck passes (N/A - JSON file)
 
-### US-002: Create the /prd skill definition file
-**Description:** As a skill user, I want the `/prd` command to generate PRDs using the methodology defined in this project.
-
-**Acceptance Criteria:**
-- [x] Create `prd.md` skill file with proper frontmatter (name, description, triggers)
-- [x] Include full PRD generation instructions from existing skill
-- [x] Skill is invocable via `/prd` command
-- [x] Typecheck passes (if applicable)
-
-### US-003: Add ralph.sh setup logic to skill
-**Description:** As a skill user, I want `ralph.sh` created automatically in my project root when I first use the skill.
+### US-002: Restructure skill for plugin format
+**Description:** As a plugin developer, I need to move the PRD skill to the plugin's `skills/` directory so it's properly namespaced as `/ralph-prd:prd`.
 
 **Acceptance Criteria:**
-- [x] Skill checks if `ralph.sh` exists in project root on invocation
-- [x] If missing, creates `ralph.sh` with correct content and executable permissions
-- [x] If exists, prompts user: "ralph.sh already exists. Overwrite? (y/n)"
-- [x] Only overwrites if user confirms
-- [x] Typecheck passes (if applicable)
+- [ ] Create `skills/prd/` directory at project root (not inside `.claude-plugin/`)
+- [ ] Move/copy existing SKILL.md to `skills/prd/SKILL.md`
+- [ ] Verify frontmatter has `name: prd` and proper description
+- [ ] Skill should be invocable as `/ralph-prd:prd` when plugin is loaded
 
-### US-004: Include progress.txt template in skill
-**Description:** As a skill user, I want `progress.txt` created with proper structure when generating a PRD.
-
-**Acceptance Criteria:**
-- [x] Skill creates `progress.txt` with Learnings section header
-- [x] Template matches format expected by ralph.sh loop
-- [x] Created alongside `PRD.md` during PRD generation
-- [x] Typecheck passes (if applicable)
-
-### US-005: Create installation README
-**Description:** As a potential user, I want clear instructions so I can install and use this skill in my project.
+### US-003: Bundle ralph.sh as plugin asset
+**Description:** As a user, I want the ralph.sh script included with the plugin so I don't need to create it manually.
 
 **Acceptance Criteria:**
-- [x] Create `README.md` in repository root with installation steps
-- [x] Include: Prerequisites (Claude Code installed)
-- [x] Include: Installation command/steps (copy to `.claude/skills/`)
-- [x] Include: Usage examples (`/prd` command)
-- [x] Include: What gets created (`ralph.sh`, `PRD.md`, `progress.txt`)
-- [x] Instructions are clear for developers unfamiliar with Claude skills
-- [x] Typecheck passes (if applicable)
+- [ ] Create `scripts/` directory at project root
+- [ ] Copy `ralph.sh` to `scripts/ralph.sh`
+- [ ] Update SKILL.md instructions to reference the bundled script location
+- [ ] Add instruction for users to copy script to their project: `cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./`
 
-### US-006: Add AGENTS.md with skill patterns
-**Description:** As a skill maintainer, I want documented patterns so future contributors understand the codebase.
+### US-004: Update README for plugin installation
+**Description:** As a user, I want clear installation instructions so I can install the plugin with one command.
 
 **Acceptance Criteria:**
-- [x] Create `AGENTS.md` in repository root
-- [x] Document skill file structure conventions
-- [x] Document ralph.sh script purpose and parameters
-- [x] Include notes on how skills are loaded by Claude Code
-- [x] Typecheck passes (if applicable)
+- [ ] Update README.md with plugin installation command: `/plugin install github:username/ralph-prd`
+- [ ] Document the namespaced command: `/ralph-prd:prd`
+- [ ] Include instructions for copying `ralph.sh` to project
+- [ ] Remove old manual copy installation instructions
+- [ ] Keep usage examples updated for new command format
+
+### US-005: Add plugin-specific documentation
+**Description:** As a user, I want to understand what the plugin provides before installing it.
+
+**Acceptance Criteria:**
+- [ ] Add "What's Included" section to README listing plugin contents
+- [ ] Document plugin structure (`.claude-plugin/`, `skills/`, `scripts/`)
+- [ ] Add uninstall instructions: `/plugin uninstall ralph-prd`
+- [ ] Include troubleshooting section for plugin-specific issues
+
+### US-006: Clean up legacy skill locations
+**Description:** As a developer, I want to remove the old `.claude/skills/` directory to avoid confusion since the plugin structure is now at the root.
+
+**Acceptance Criteria:**
+- [ ] Remove `.claude/skills/prd/` directory (now at `skills/prd/`)
+- [ ] Remove `.claude/skills/ralph/` directory if it exists
+- [ ] Keep `.claude/settings.local.json` if needed for local development
+- [ ] Update AGENTS.md if it references old paths
+
+### US-007: Test plugin with --plugin-dir flag
+**Description:** As a developer, I need to verify the plugin works correctly before publishing.
+
+**Acceptance Criteria:**
+- [ ] Run `claude --plugin-dir .` from project root
+- [ ] Verify `/ralph-prd:prd` command is available
+- [ ] Verify the skill generates PRD.md correctly
+- [ ] Verify `scripts/ralph.sh` is accessible
 
 ## Non-Goals
 
-- No npm/package manager distribution (GitHub copy only)
-- No automatic updates mechanism
-- No `/ralph` command to run the loop (users run `./ralph.sh` directly)
-- No web UI or configuration interface
-- No support for non-bash environments (Windows without WSL)
+- No marketplace submission (GitHub-only distribution for now)
+- No additional skills beyond `/prd` (keeping it focused)
+- No hooks or MCP servers in this plugin
+- No automated testing framework for the plugin itself
 
 ## Technical Considerations
 
-- Skills are Markdown files in `.claude/skills/` directory
-- Skills use frontmatter for metadata (name, triggers, description)
-- `ralph.sh` needs `chmod +x` for executable permission
-- The skill should be self-contained (no external dependencies)
-- Installation is manual file copy since Claude Code doesn't have a package manager
+- Plugin skills are namespaced: `/ralph-prd:prd` instead of just `/prd`
+- The `.claude-plugin/` directory should ONLY contain `plugin.json`
+- Skills go in `skills/` at plugin root, NOT inside `.claude-plugin/`
+- Users need to manually copy `ralph.sh` to their project after installation
+- Consider adding a note that users can create an alias: `/prd -> /ralph-prd:prd`
