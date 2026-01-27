@@ -36,10 +36,10 @@ Convert the existing Ralph PRD skill into a distributable Claude Code plugin so 
 **Description:** As a user, I want the ralph.sh script included with the plugin so I don't need to create it manually.
 
 **Acceptance Criteria:**
-- [ ] Create `scripts/` directory at project root
-- [ ] Copy `ralph.sh` to `scripts/ralph.sh`
-- [ ] Update SKILL.md instructions to reference the bundled script location
-- [ ] Add instruction for users to copy script to their project: `cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./`
+- [x] Create `scripts/` directory at project root
+- [x] Copy `ralph.sh` to `scripts/ralph.sh`
+- [x] Update SKILL.md instructions to reference the bundled script location
+- [x] Add instruction for users to copy script to their project: `cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./`
 
 ### US-004: Update README for plugin installation
 **Description:** As a user, I want clear installation instructions so I can install the plugin with one command.

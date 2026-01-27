@@ -262,3 +262,37 @@ Also create `progress.txt`:
 - [ ] UI stories have "Verify changes work in browser"
 - [ ] Non-goals section defines clear boundaries
 - [ ] Saved PRD.md and progress.txt
+
+---
+
+## Running the Ralph Loop
+
+After generating a PRD, you can use the bundled `ralph.sh` script to automatically implement all user stories.
+
+### Setup
+
+Copy the ralph.sh script from the plugin to your project:
+
+```bash
+cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./
+chmod +x ralph.sh
+```
+
+### Usage
+
+```bash
+# Run with default settings (max 10 iterations, 2 second pause between)
+./ralph.sh
+
+# Run with custom max iterations
+./ralph.sh 20
+
+# Run with custom iterations and pause time
+./ralph.sh 20 5
+```
+
+The script will automatically:
+1. Read PRD.md and find incomplete tasks
+2. Implement one task per iteration
+3. Mark completed tasks with [x]
+4. Stop when all tasks are complete or max iterations reached

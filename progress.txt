@@ -27,3 +27,16 @@
   - The old `.claude/skills/prd/` location will be cleaned up in US-006
   - When plugin is loaded, skill is namespaced as `/ralph-prd:prd`
 ---
+
+## Iteration 3 - US-003: Bundle ralph.sh as plugin asset
+- What was implemented: Created scripts/ directory and copied ralph.sh there, updated SKILL.md with usage instructions
+- Files changed:
+  - `scripts/ralph.sh` (created - copied from root `ralph.sh`)
+  - `skills/prd/SKILL.md` (updated - added "Running the Ralph Loop" section)
+  - `PRD.md` (updated - marked US-003 complete)
+- Learnings for future iterations:
+  - Plugin bundled scripts go in `scripts/` at project root
+  - Users install from `~/.claude/plugins/ralph-prd/scripts/ralph.sh`
+  - Bash syntax check: `bash -n script.sh`
+  - No typecheck needed for markdown/shell projects - just verify syntax
+---
