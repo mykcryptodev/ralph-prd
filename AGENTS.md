@@ -1,27 +1,34 @@
-# AGENTS.md - Ralph Skill Patterns
+# AGENTS.md - Ralph PRD Plugin Patterns
 
-This document captures patterns and conventions for maintaining the Ralph skill.
+This document captures patterns and conventions for maintaining the Ralph PRD plugin.
 
 ## Project Structure
 
 ```
 ralph-skill/
+├── .claude-plugin/
+│   └── plugin.json       # Plugin manifest (name, version, description)
+├── skills/
+│   └── prd/
+│       └── SKILL.md      # The main skill definition file
+├── scripts/
+│   └── ralph.sh          # Bundled ralph.sh script for users to copy
 ├── .claude/
-│   └── skills/
-│       └── ralph/
-│           └── prd.md    # The main skill definition file
+│   └── settings.local.json  # Local development settings (not part of plugin)
 ├── AGENTS.md             # This file - patterns for contributors
 ├── PRD.md                # Product requirements for THIS repo
 ├── progress.txt          # Progress log for THIS repo's development
 └── README.md             # Installation/usage instructions for users
 ```
 
-## Skill File Structure Conventions
+## Plugin Structure Conventions
 
 ### Location
-- Distributable skills live in `.claude/skills/[skill-name]/` directory
-- The main skill file is a markdown file (e.g., `prd.md`)
-- Users install by copying to `~/.claude/skills/` (global) or `.claude/skills/` (project)
+- Plugin manifest lives in `.claude-plugin/plugin.json`
+- Skills live in `skills/[skill-name]/SKILL.md` at plugin root (NOT inside `.claude-plugin/`)
+- Scripts live in `scripts/` at plugin root
+- Users install via `/plugin install github:username/ralph-prd`
+- Plugin is installed to `~/.claude/plugins/ralph-prd/`
 
 ### Frontmatter Format
 Skills use YAML frontmatter for metadata:
@@ -34,8 +41,10 @@ description: Description with trigger phrases like "create a prd" or "plan featu
 ```
 
 Key fields:
-- `name`: The skill identifier (used in `/skill-name` command)
+- `name`: The skill identifier (used in `/plugin-name:skill-name` command)
 - `description`: Include trigger phrases that invoke the skill automatically
+
+For this plugin, the command is `/ralph-prd:prd` (namespaced).
 
 ### Skill Body
 The markdown body contains instructions for Claude to follow when the skill is invoked. Structure tips:
@@ -57,17 +66,22 @@ The markdown body contains instructions for Claude to follow when the skill is i
 - `--continue`: Continues conversation instead of starting fresh each iteration
 
 ### Script Location
-- Created in user's project root by the `/prd` skill
+- Bundled with plugin at `scripts/ralph.sh`
+- Users copy to their project: `cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./`
 - Needs executable permission (`chmod +x ralph.sh`)
 
-## How Skills Are Loaded by Claude Code
+## How Plugin Skills Are Loaded by Claude Code
 
-1. Claude Code scans `~/.claude/skills/` and `.claude/skills/` directories
-2. Each subdirectory is a skill; markdown files define skill behavior
-3. Skills are matched by:
-   - Explicit command: `/skill-name`
+1. Claude Code scans installed plugins in `~/.claude/plugins/`
+2. Each plugin's `skills/` directory contains skill subdirectories
+3. Skill files must be named `SKILL.md` (case-sensitive)
+4. Skills are matched by:
+   - Explicit namespaced command: `/plugin-name:skill-name` (e.g., `/ralph-prd:prd`)
    - Trigger phrases in the `description` frontmatter field
-4. When triggered, Claude receives the skill's markdown content as instructions
+5. When triggered, Claude receives the skill's markdown content as instructions
+
+### Testing Locally
+Use `claude --plugin-dir .` from project root to test the plugin before publishing.
 
 ## Common Patterns
 
@@ -93,8 +107,9 @@ Always read the Learnings section at the start of each iteration.
 
 ## Contributing
 
-When modifying this skill:
-1. Test the skill by running `/prd` in a test project
-2. Verify ralph.sh gets created correctly
-3. Ensure progress.txt template is generated
-4. Update this AGENTS.md if new patterns emerge
+When modifying this plugin:
+1. Test the plugin by running `claude --plugin-dir .` from project root
+2. Verify `/ralph-prd:prd` command is available
+3. Verify skill generates PRD.md correctly
+4. Ensure `scripts/ralph.sh` is accessible
+5. Update this AGENTS.md if new patterns emerge

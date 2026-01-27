@@ -64,10 +64,10 @@ Convert the existing Ralph PRD skill into a distributable Claude Code plugin so 
 **Description:** As a developer, I want to remove the old `.claude/skills/` directory to avoid confusion since the plugin structure is now at the root.
 
 **Acceptance Criteria:**
-- [ ] Remove `.claude/skills/prd/` directory (now at `skills/prd/`)
-- [ ] Remove `.claude/skills/ralph/` directory if it exists
-- [ ] Keep `.claude/settings.local.json` if needed for local development
-- [ ] Update AGENTS.md if it references old paths
+- [x] Remove `.claude/skills/prd/` directory (now at `skills/prd/`)
+- [x] Remove `.claude/skills/ralph/` directory if it exists
+- [x] Keep `.claude/settings.local.json` if needed for local development
+- [x] Update AGENTS.md if it references old paths
 
 ### US-007: Test plugin with --plugin-dir flag
 **Description:** As a developer, I need to verify the plugin works correctly before publishing.

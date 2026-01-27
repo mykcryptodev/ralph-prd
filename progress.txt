@@ -64,3 +64,18 @@
   - Uninstall section should note which files are NOT affected (user-created files in projects)
   - Troubleshooting already covered plugin issues (command not found, reinstall steps)
 ---
+
+## Iteration 6 - US-006: Clean up legacy skill locations
+- What was implemented: Removed old `.claude/skills/` directories and updated AGENTS.md with new plugin paths
+- Files changed:
+  - `.claude/skills/prd/` (deleted - moved to `skills/prd/`)
+  - `.claude/skills/ralph/` (deleted - legacy directory)
+  - `.claude/skills/` (deleted - now empty, no longer needed)
+  - `AGENTS.md` (updated - references new plugin structure instead of old `.claude/skills/` paths)
+  - `PRD.md` (updated - marked US-006 complete)
+- Learnings for future iterations:
+  - Plugin skills go in `skills/` at root, NOT in `.claude/skills/`
+  - Keep `.claude/settings.local.json` for local development (not part of plugin)
+  - AGENTS.md should always reflect current directory structure
+  - Test with `claude --plugin-dir .` before publishing
+---
