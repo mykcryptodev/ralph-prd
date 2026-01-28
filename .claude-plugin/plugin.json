@@ -2,7 +2,7 @@
   "name": "ralph-prd",
   "version": "1.0.0",
   "description": "A Claude Code plugin that provides the /prd skill for generating Product Requirements Documents with iterative autonomous development support.",
-  "author": "mikesolomon",
-  "homepage": "https://github.com/mikesolomon/ralph-prd",
-  "repository": "https://github.com/mikesolomon/ralph-prd"
+  "author": "mykcryptodev",
+  "homepage": "https://github.com/mykcryptodev/ralph-prd",
+  "repository": "https://github.com/mykcryptodev/ralph-prd"
 }

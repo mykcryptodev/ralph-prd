@@ -45,7 +45,7 @@ ralph-prd/
 Install the plugin with a single command in Claude Code:
 
 ```
-/plugin install github:mikesolomon/ralph-prd
+/plugin install github:mykcryptodev/ralph-prd
 ```
 
 After installation, copy the `ralph.sh` script to your project directory:
@@ -187,7 +187,7 @@ Check `progress.txt` - it contains learnings from failed attempts. You may need 
 If `/ralph-prd:prd` is not available:
 - Verify the plugin is installed: check `~/.claude/plugins/ralph-prd/` exists
 - Restart Claude Code after installation
-- Reinstall if needed: `/plugin uninstall ralph-prd` then `/plugin install github:mikesolomon/ralph-prd`
+- Reinstall if needed: `/plugin uninstall ralph-prd` then `/plugin install github:mykcryptodev/ralph-prd`
 
 ## License
 
