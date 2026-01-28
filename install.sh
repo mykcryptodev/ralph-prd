@@ -1,33 +1,32 @@
 #!/bin/bash
 set -e
 
-PLUGIN_NAME="ralph-prd"
-PLUGIN_DIR="$HOME/.claude/plugins/$PLUGIN_NAME"
-REPO_URL="https://github.com/mykcryptodev/ralph-prd.git"
+SKILL_URL="https://raw.githubusercontent.com/mykcryptodev/ralph-prd/master/skills/prd/SKILL.md"
+RALPH_URL="https://raw.githubusercontent.com/mykcryptodev/ralph-prd/master/scripts/ralph.sh"
+SKILL_DIR=".claude/skills/prd"
+SKILL_FILE="$SKILL_DIR/SKILL.md"
 
-echo "Installing $PLUGIN_NAME plugin for Claude Code..."
+echo "Installing Ralph PRD skill..."
 
-# Create plugins directory if it doesn't exist
-mkdir -p "$HOME/.claude/plugins"
+# Create the skills directory
+mkdir -p "$SKILL_DIR"
 
-# Check if already installed
-if [ -d "$PLUGIN_DIR" ]; then
-    echo "Plugin already installed at $PLUGIN_DIR"
-    echo "Updating..."
-    cd "$PLUGIN_DIR"
-    git pull origin master
-    echo "✓ Plugin updated successfully!"
-else
-    echo "Cloning $PLUGIN_NAME..."
-    git clone "$REPO_URL" "$PLUGIN_DIR"
-    echo "✓ Plugin installed successfully!"
-fi
+# Download the skill file
+echo "Downloading SKILL.md..."
+curl -fsSL "$SKILL_URL" -o "$SKILL_FILE"
+echo "✓ Skill installed to $SKILL_FILE"
+
+# Download ralph.sh to current directory
+echo "Downloading ralph.sh..."
+curl -fsSL "$RALPH_URL" -o "ralph.sh"
+chmod +x ralph.sh
+echo "✓ ralph.sh installed and made executable"
 
 echo ""
 echo "Installation complete!"
 echo ""
-echo "Next steps:"
-echo "  1. Restart Claude Code"
-echo "  2. Use /ralph-prd:prd to create a PRD"
-echo "  3. Copy ralph.sh to your project: cp $PLUGIN_DIR/scripts/ralph.sh ./"
+echo "Usage:"
+echo "  1. Run 'claude' in this directory"
+echo "  2. Use /prd or ask Claude to 'create a prd' to generate a PRD"
+echo "  3. Run ./ralph.sh to start the autonomous implementation loop"
 echo ""

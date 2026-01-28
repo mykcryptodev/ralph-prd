@@ -1,6 +1,6 @@
-# Ralph PRD Plugin for Claude Code
+# Ralph PRD Skill for Claude Code
 
-A Claude Code plugin that provides the `/ralph-prd:prd` command for generating Product Requirements Documents and setting up the Ralph autonomous implementation loop.
+A Claude Code skill for generating Product Requirements Documents and running the Ralph autonomous implementation loop.
 
 ## What is Ralph?
 
@@ -13,27 +13,10 @@ Ralph is an autonomous coding workflow that:
 
 ## What's Included
 
-This plugin provides everything needed to use the Ralph autonomous workflow:
-
-| Component | Location | Description |
-|-----------|----------|-------------|
-| Plugin manifest | `.claude-plugin/plugin.json` | Plugin metadata and configuration |
-| PRD skill | `skills/prd/SKILL.md` | The `/ralph-prd:prd` command for generating PRDs |
-| Ralph script | `scripts/ralph.sh` | The autonomous implementation loop script |
-
-### Plugin Structure
-
-```
-ralph-prd/
-├── .claude-plugin/
-│   └── plugin.json       # Plugin manifest (name, version, description)
-├── skills/
-│   └── prd/
-│       └── SKILL.md      # The /ralph-prd:prd skill definition
-├── scripts/
-│   └── ralph.sh          # Bundled autonomous loop script
-└── README.md             # This documentation
-```
+| Component | Description |
+|-----------|-------------|
+| `SKILL.md` | The PRD generator skill for Claude Code |
+| `ralph.sh` | The autonomous implementation loop script |
 
 ## Prerequisites
 
@@ -42,60 +25,50 @@ ralph-prd/
 
 ## Installation
 
-Install the plugin with a single command:
+Run this command in your project directory:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/mykcryptodev/ralph-prd/master/install.sh | bash
 ```
 
-This clones the plugin to `~/.claude/plugins/ralph-prd/`. After installation, restart Claude Code.
-
-Then copy the `ralph.sh` script to your project directory:
-
-```bash
-cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./
-chmod +x ralph.sh
-```
+This installs:
+- `.claude/skills/prd/SKILL.md` - the PRD generator skill
+- `ralph.sh` - the autonomous loop script
 
 ### Updating
 
-Run the same install command to update to the latest version:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/mykcryptodev/ralph-prd/master/install.sh | bash
-```
+Run the same install command to update to the latest version.
 
 ## Uninstallation
 
-To remove the plugin:
+To remove Ralph from your project:
 
 ```bash
-rm -rf ~/.claude/plugins/ralph-prd
+rm -rf .claude/skills/prd ralph.sh
 ```
 
-This removes the plugin from `~/.claude/plugins/`. Any `ralph.sh`, `PRD.md`, or `progress.txt` files in your projects are not affected.
+Any `PRD.md` or `progress.txt` files are not affected.
 
 ## Usage
 
 ### Creating a PRD
 
-In any project directory, use the `/ralph-prd:prd` command:
+Use the `/prd` command or just ask Claude to "create a prd":
 
 ```
-/ralph-prd:prd add user authentication
+/prd add user authentication
 ```
 
 Or simply describe what you want to build:
 
 ```
-/ralph-prd:prd create a REST API for managing tasks
+create a prd for a REST API for managing tasks
 ```
 
 The skill will:
 1. Ask clarifying questions if needed
 2. Generate a structured `PRD.md` in your project root
 3. Create a `progress.txt` file for tracking learnings
-4. Create `ralph.sh` (the autonomous loop script)
 
 ### Running the Autonomous Loop
 
@@ -115,7 +88,7 @@ You can optionally specify a maximum number of iterations:
 
 ## What Gets Created
 
-When you use the `/ralph-prd:prd` command, these files are created in your project:
+When you use the `/prd` command, these files are created in your project:
 
 | File | Description |
 |------|-------------|
@@ -193,11 +166,11 @@ Check `progress.txt` - it contains learnings from failed attempts. You may need 
 - Break the task into smaller steps
 - Add technical context to the PRD
 
-### Claude Code not finding the command
-If `/ralph-prd:prd` is not available:
-- Verify the plugin is installed: check `~/.claude/plugins/ralph-prd/` exists
+### Claude Code not finding the /prd command
+If `/prd` is not available:
+- Verify the skill is installed: check `.claude/skills/prd/SKILL.md` exists in your project
 - Restart Claude Code after installation
-- Reinstall if needed: `rm -rf ~/.claude/plugins/ralph-prd` then run the install command again
+- Reinstall if needed: run the install command again
 
 ## License
 
