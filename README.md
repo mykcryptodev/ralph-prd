@@ -42,25 +42,35 @@ ralph-prd/
 
 ## Installation
 
-Install the plugin with a single command in Claude Code:
+Install the plugin with a single command:
 
-```
-/plugin install github:mykcryptodev/ralph-prd
+```bash
+curl -fsSL https://raw.githubusercontent.com/mykcryptodev/ralph-prd/master/install.sh | bash
 ```
 
-After installation, copy the `ralph.sh` script to your project directory:
+This clones the plugin to `~/.claude/plugins/ralph-prd/`. After installation, restart Claude Code.
+
+Then copy the `ralph.sh` script to your project directory:
 
 ```bash
 cp ~/.claude/plugins/ralph-prd/scripts/ralph.sh ./
 chmod +x ralph.sh
 ```
 
+### Updating
+
+Run the same install command to update to the latest version:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mykcryptodev/ralph-prd/master/install.sh | bash
+```
+
 ## Uninstallation
 
-To remove the plugin from Claude Code:
+To remove the plugin:
 
-```
-/plugin uninstall ralph-prd
+```bash
+rm -rf ~/.claude/plugins/ralph-prd
 ```
 
 This removes the plugin from `~/.claude/plugins/`. Any `ralph.sh`, `PRD.md`, or `progress.txt` files in your projects are not affected.
@@ -187,7 +197,7 @@ Check `progress.txt` - it contains learnings from failed attempts. You may need 
 If `/ralph-prd:prd` is not available:
 - Verify the plugin is installed: check `~/.claude/plugins/ralph-prd/` exists
 - Restart Claude Code after installation
-- Reinstall if needed: `/plugin uninstall ralph-prd` then `/plugin install github:mykcryptodev/ralph-prd`
+- Reinstall if needed: `rm -rf ~/.claude/plugins/ralph-prd` then run the install command again
 
 ## License
 
